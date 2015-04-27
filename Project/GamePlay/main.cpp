@@ -16,6 +16,7 @@ using namespace std;
 int gamePly(char *,char *,int ,bool &);
 void prntAry(char *,int);
 int linSearch(char *,int ,char);
+void disHagman(string *,int ,int);
 
 
 
@@ -49,6 +50,7 @@ int main(int argc, char** argv) {
 }
 
 int gamePly(char *gues,char *word,int siz, bool &fin){
+    const int SIZE = 10;
     bool tr = true;
     char input;
     char corcRay[siz] = {' ',' ',' '};
@@ -56,6 +58,14 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
     int trys = 0;
     int postion;
     int miss = 0;
+    string hangman[SIZE];
+    ifstream inputFile;
+    int j = 0;
+    inputFile.open("hangman.txt");
+    while(inputFile >> hangman[j]){
+        j++;
+    }
+    inputFile.close();
     cout<<"Welcome to the wonderful world of Hang Man."<<endl;
     do{
         
@@ -68,6 +78,7 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
             if(trys == 0){
                 postion = linSearch(word,siz,input);
                 if(postion == -1){
+                    cout<<"Sorry that letter is incorrect"<<endl;
                     gues[miss] = input;
                     miss++;
                 }
@@ -79,11 +90,17 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
                 if(postion == -1){
                     postion = linSearch(word,siz,input);
                     if(postion == -1){
-                    gues[miss] = input;
-                    miss++;
+                        cout<<"Sorry that letter is incorrect"<<endl;
+                        gues[miss] = input;
+                        miss++;
                     }
-                    else
+                    else{
                         corcRay[postion] = word[postion];
+                        cout<<"Yes, that is one of the letters of the word"<<endl;
+                    }
+                }
+                else{
+                    cout<<"Sorry but you've already used that letter.";
                 }
             }    
         }
@@ -95,8 +112,16 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
         }
         else
             cout<<"That is an invaild input, please try again.";
-        if(tr == true){
-            cout<<"NICE TRY!!"<<endl<<"    ";
+        if(miss == 8){
+            cout<<"Sorry, but you've missed too many letter. :("<<endl;
+            cout<<"Better luck next time";
+            disHagman(hangman,SIZE,miss);
+            tr = false;
+            score = 8;
+        }
+        if(tr == true && miss > 0){
+            cout<<"NICE TRY!!";
+            disHagman(hangman,SIZE,miss);
             prntAry(corcRay,siz);
             
             prntAry(gues,miss);
@@ -110,6 +135,33 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
     return score;
     
     
+}
+
+void disHagman(string *hangMan,int SIZE,int a){
+    int perLine = 3;
+    int i = 0;
+//    const int SIZE = 10;
+//    string hangMan[SIZE] = {"   |\n","   |\n","   O"," / ","|"," \","  /",
+//    " \ "};
+    cout<<endl;
+    
+    for(i;i<3 && i<a;i++){
+        cout<<"   "<<hangMan[i]<<endl;
+    }
+    if(a>3){
+        cout<<"  ";
+        for(i;i<6 && i<a;i++){
+            cout<<hangMan[i];
+            if(i%perLine==(perLine-1))cout<<endl;
+        }
+    }
+    if(a>6){
+        cout<<' ';
+        for(i;i<a;i++){
+            cout<<' '<<hangMan[i];
+        }
+    }
+    cout<<endl<<endl;
 }
 
 void prntAry(char *a,int n){
