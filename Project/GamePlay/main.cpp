@@ -14,6 +14,9 @@
 using namespace std;
 
 int gamePly(char *,char *,int ,bool &);
+void prntAry(char *,int);
+int linSearch(char *,int ,char);
+
 
 
 int main(int argc, char** argv) {
@@ -48,8 +51,11 @@ int main(int argc, char** argv) {
 int gamePly(char *gues,char *word,int siz, bool &fin){
     bool tr = true;
     char input;
+    char corcRay[siz] = {' ',' ',' '};
     int score;
     int trys = 0;
+    int postion;
+    int miss = 0;
     cout<<"Welcome to the wonderful world of Hang Man."<<endl;
     do{
         
@@ -59,16 +65,43 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
         if(isalpha(input)){
             if(islower(input))
                 input = toupper(input);
-            
+            if(trys == 0){
+                postion = linSearch(word,siz,input);
+                if(postion == -1){
+                    gues[miss] = input;
+                    miss++;
+                }
+                else
+                    corcRay[postion] = word[postion];
+            }
+            else{
+                postion = linSearch(gues,miss,input);
+                if(postion == -1){
+                    postion = linSearch(word,siz,input);
+                    if(postion == -1){
+                    gues[miss] = input;
+                    miss++;
+                    }
+                    else
+                        corcRay[postion] = word[postion];
+                }
+            }    
         }
-        if(input == 0){
+        else if(input == '0'){
             cout<<"You have entered 0, we will now exit the game."<<endl;
             fin = false;
             tr = false;
+            cout<<"This should display"<<fin<<"and "<<tr<<endl;
         }
         else
             cout<<"That is an invaild input, please try again.";
-        if(tr = true){
+        if(tr == true){
+            cout<<"NICE TRY!!"<<endl<<"    ";
+            prntAry(corcRay,siz);
+            
+            prntAry(gues,miss);
+            
+            
             
         }
         trys++;
@@ -77,4 +110,28 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
     return score;
     
     
+}
+
+void prntAry(char *a,int n){
+    //Loop and print
+    cout<<endl;
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int linSearch(char *a,int size,char b){
+    int index = 0;
+    int postion = -1;
+    bool found = false;
+    
+    while(index < size && !found){
+        if(a[index] == b){
+            found = true;
+            postion = index;
+        }
+        index++;
+    }
+    return postion;
 }

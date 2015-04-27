@@ -124,11 +124,8 @@ void gameRules(){
 
 void prntAry(string *a,int n){
     //Loop and print
-    
-    cout<<endl;
     for(int i=0;i<n;i++){
         cout<<a[i]<<" ";
-       
     }
     cout<<endl;
 }
