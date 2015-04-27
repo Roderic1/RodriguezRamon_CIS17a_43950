@@ -58,6 +58,7 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
     int trys = 0;
     int postion;
     int miss = 0;
+    int correct = 0;
     string hangman[SIZE];
     ifstream inputFile;
     int j = 0;
@@ -82,22 +83,33 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
                     gues[miss] = input;
                     miss++;
                 }
-                else
+                else{
                     corcRay[postion] = word[postion];
+                    cout<<"Yes, that is one of the letters of the word"<<endl;
+                    correct++;
+                }
             }
             else{
                 postion = linSearch(gues,miss,input);
                 if(postion == -1){
-                    postion = linSearch(word,siz,input);
+                    postion = linSearch(corcRay,siz,input);
                     if(postion == -1){
-                        cout<<"Sorry that letter is incorrect"<<endl;
-                        gues[miss] = input;
-                        miss++;
+                        postion = linSearch(word,siz,input);
+                        if(postion == -1){
+                            cout<<"Sorry that letter is incorrect"<<endl;
+                            gues[miss] = input;
+                            miss++;
+                        }
+                        else{
+                            corcRay[postion] = word[postion];
+                            cout<<"Yes, that is one of the letters of the word"<<endl;
+                            correct++;
+                        }
                     }
                     else{
-                        corcRay[postion] = word[postion];
-                        cout<<"Yes, that is one of the letters of the word"<<endl;
-                    }
+                        cout<<"I'm sorry, but you already guessed that letter";
+                        cout<<" correctly.";
+                    }  
                 }
                 else{
                     cout<<"Sorry but you've already used that letter.";
