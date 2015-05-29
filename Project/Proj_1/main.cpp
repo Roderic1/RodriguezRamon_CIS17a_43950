@@ -10,11 +10,13 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <cstring>
 
 using namespace std;
 
 void gameRules();
 int getWord(char *,int ,bool &);
+void prntAryC(char *,int);
 
 void displayGam(string ,int ,int *);
 
@@ -63,6 +65,8 @@ void displayGam(string na ,int gam,int *sco){
             cout<<"Game: "<<i+1;
             if(sco[i] == 0)
                 cout<<"Congrats, you won this game";
+            else if(sco[i] == -1)
+                cout<<"You quit this game, therefore you lost.";
             else
                 cout<<"You got "<<sco[i]<<" letters correct.";
         }
@@ -79,7 +83,7 @@ int getWord(char *word,int SIZE,bool &fin){
     bool num = true;
     int wordSiz;
     int i = 0;
-    char selWord;
+    int selWord;
     do{
         cout<<"Would you like a 3 or 5 letter word?"<<endl;
         cin>>wordSiz;
@@ -105,10 +109,12 @@ int getWord(char *word,int SIZE,bool &fin){
     }
     prntAry(canidate,i);                                                      //**
     selWord = rand()%90+10;
-    cout<<selWord;                                                            //**
-    selWord = selWord%9;
-    cout<<selWord;                                                            //**
-    
+    cout<<"Random";
+    cout<<"hte number is "<<selWord<<endl;                                                            //**
+    selWord = selWord%10;
+    cout<<"try "<<selWord;                                                            //**
+    std::strcpy(word,canidate[selWord].c_str());
+    prntAryC(word,wordSiz);
     
     //Close the file of the word list
     inputFile.close();
@@ -124,6 +130,15 @@ void gameRules(){
 
 void prntAry(string *a,int n){
     //Loop and print
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+}
+
+void prntAryC(char *a,int n){
+    //Loop and print
+    cout<<endl;
     for(int i=0;i<n;i++){
         cout<<a[i]<<" ";
     }

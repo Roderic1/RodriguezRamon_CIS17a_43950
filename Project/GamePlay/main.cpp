@@ -54,7 +54,7 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
     bool tr = true;
     char input;
     char corcRay[siz] = {' ',' ',' '};
-    int score;
+    int score = -1;
     int trys = 0;
     int postion;
     int miss = 0;
@@ -131,15 +131,19 @@ int gamePly(char *gues,char *word,int siz, bool &fin){
             tr = false;
             score = 8;
         }
+        if(correct == (siz-1)){
+            cout<<"Congratulations!! You've won this game!!";
+            disHagman(hangman,SIZE,miss);
+            prntAry(corcRay,siz);
+            prntAry(gues,miss);
+            tr = false;
+            score = 0;
+        }
         if(tr == true && miss > 0){
             cout<<"NICE TRY!!";
             disHagman(hangman,SIZE,miss);
             prntAry(corcRay,siz);
-            
             prntAry(gues,miss);
-            
-            
-            
         }
         trys++;
     }while(tr == true);
