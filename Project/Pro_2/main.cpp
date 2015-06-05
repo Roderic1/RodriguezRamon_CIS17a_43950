@@ -27,11 +27,13 @@ int main(int argc, char** argv) {
     Comp a1;
     Score wins;
     Hangman game;
+    string ab;
     
     wins.numb = 0;
     
     cout<<"Please enter your name for the game to start"<<endl;
-    getline(cin,stu.player);
+    getline(cin,ab);
+    stu.
     gameRules();
 
     return 0;
