@@ -4,8 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Comp.h</itemPath>
       <itemPath>Hangman.h</itemPath>
+      <itemPath>Player.cpp</itemPath>
+      <itemPath>Player.h</itemPath>
       <itemPath>User.h</itemPath>
+      <itemPath>score.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,7 +18,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Comp.cpp</itemPath>
       <itemPath>Hangman.cpp</itemPath>
+      <itemPath>User.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -39,13 +45,25 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Comp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Comp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Hangman.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hangman.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="User.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="User.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="score.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -68,13 +86,25 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Comp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Comp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Hangman.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hangman.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="User.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="User.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="score.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
